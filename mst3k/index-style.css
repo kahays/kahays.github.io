@@ -11,15 +11,15 @@ body {
 }
 #instructions {
 	position: absolute;
-	top: 30%;
+	top: 35%;
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 	width: 100%;
-	background-color: #fff;
+	background-color: white;
 }
 #disclaimer {
-	border: 1px solid #c00;
+	border: 1px solid #ccc;
 	padding: 0.8em;
 	text-align: center;
 	font-size: 70%;
