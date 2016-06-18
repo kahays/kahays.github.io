@@ -12,10 +12,12 @@ body {
 #instructions {
 	position: absolute;
 	top: 35%;
+	left: 1px;
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
-	width: 100%;
+	width: 710px;
+	padding-left: 16px;
 	background-color: white;
 }
 #disclaimer {
