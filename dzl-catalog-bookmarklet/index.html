@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DZL cataloging helper instructions</title>
+	<link href="index-style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="container">
+		<!--
+		Image is from the DZL Instagram feed (https://www.instagram.com/denverzinelibrary/),
+		with no current attribution. If you claim the copyright for this, please raise an
+		issue on the associated Github page. Thanks!
+		-->
+		<img src="dzl-instagram.jpg">
+		<div id="instructions">
+		<h3>How to use the <a href="https://github.com/">helper script</a> for cataloging the DZL collection in <a href="https://www.librarything.com/">LibraryThing</a>!</h3>
+		<ol>
+			<li>Add this link as a bookmark:
+				<ul>
+					<li><a href="javascript:(function(){$.getScript('http://lewis-k.github.io/dzl-catalog-bookmarklet/assist-cataloging-min.js');})();">DZL cataloging helper</a></li>
+				</ul>
+			</li>
+			<li>Log into <a href="https://www.librarything.com/">LibraryThing</a>.</li>
+			<li>Go to the <a href="https://www.librarything.com/addnew.php">manual entry page</a> under the "Add books" tab.</li>
+			<li>Load the bookmark!</li>
+		</ol>
+		</div>
+
+		<div id="details">
+		<h3>What does this do?</h3>
+		<p>
+			It makes it easier to add zines into the DZL catalog by reformatting LibraryThing's manual entry page. You can now:
+			<ul>
+				<li>Add covers to zines directly</li>
+				<li>Search and copy data from existing zines</li>
+				<li>Click to select common zine dimensions</li>
+				<li>Automatically generate a physical summary</li>
+				<li>Catalog multiple items without leaving the page</li>
+			</ul>
+			Other improvements are focused on making it easy to follow the DZL cataloging rules:
+			<ul>
+				<li>Hides unused fields</li>
+				<li>Syncs "Collections" with tags and the "Other call number" field</li>
+				<li>Syncs comment and summary fields</li>
+				<li>Suggests tags using the approved vocabulary list</li>
+				<li>Automatically copies volume and issue information from titles to the comment and summary fields</li>
+			</ul>
+		</p>
+		</div>
+
+		<div id="problems">
+		<h3>Problems?</h3>
+		<p>
+			Please report any issues you have! &#x1F642; You can email, use the DZL Slack channel, file a bug report, whatever you'd like! This was originally tested using Chrome on a Mac laptop and may have several bugs on other platforms.
+		</p>
+		</div>
+	</div>
+</body>
+</html>

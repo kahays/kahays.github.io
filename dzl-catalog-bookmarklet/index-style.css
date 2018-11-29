@@ -1,0 +1,31 @@
+/* for the magic constants: the image we're using is 720px wide and 450px tall. */
+body {
+	width: 722px;
+	margin: 0 auto;
+	font-family: sans-serif;
+	background-color: #eee;
+}
+
+#container {
+	position: relative;
+	border: 1px solid #BBB;
+	border-top-width: 0;
+	background-color: white;
+}
+
+#container > div {
+	width: calc(720px - 1.5em);
+	padding: 0 0.75em;
+}
+
+#instructions {
+	position: absolute;
+	top: 50px;
+	left: 0.5em;
+	width: calc(720px - 1.5em - 1em) !important;
+	border-radius: 0.3em;
+	background-color: inherit;
+}
+
+li { padding-top: 0.5em; }
+li:first-of-type { padding-top: inherit; }
