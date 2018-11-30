@@ -1,7 +1,7 @@
 // putting it together
 (function(){
 	/* include guard, kinda */
-	if (!document.location.hostname.includes("librarything") || window.catalogHelperTool && window.catalogHelperTool.installed) {
+	if (document.location.hostname.indexOf("librarything") === -1 || window.catalogHelperTool && window.catalogHelperTool.installed) {
 		return;
 	} else {
 		window.catalogHelperTool = {
