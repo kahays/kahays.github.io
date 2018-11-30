@@ -220,6 +220,7 @@
 	  .addClass("catalogHelperTool")
 	  .removeAttr("name")
 	  .width("calc(95% - 8em)")
+	  .css("margin", "0") /* Safari graphical fix */
 	  .insertBefore("#form_tags")
 	  .end()
 	.hide();
@@ -245,6 +246,7 @@
 			terms.push( ui.item.value );
 			terms.push( "" );
 			this.value = terms.join( ", " );
+			jQuery(this).change();
 			return false;
 		}
 	}).on("change", function(){
