@@ -205,7 +205,7 @@
 	jQuery(".bookEditHint:contains('summary')").text("Summary will automatically match the Comments field");
 
 	/* create our readonly field for autotagging */
-	jQuery("<span id='autotag' class='catalogHelperTool bookEditInput' style='width: fit-content; display: inline-block; vertical-align: inherit; padding: 2px 4px; border-right-width: 0; color: gray;'></span>").insertBefore("#form_tags").hide();
+	jQuery("<span id='autotag' class='catalogHelperTool bookEditInput' style='width: auto; display: inline-block; vertical-align: inherit; padding: 2px 4px; border-right-width: 0; color: gray;'></span>").insertBefore("#form_tags").hide();
 
 	/* destructively prevent re-establishment of vanilla autocomplete */
 	jQuery(document).off("focus", "[data-autocomplete]");
@@ -289,12 +289,12 @@
 	identifiers.changeCollection(firstCheckedCollection);
 
 	/* constrain the publication dates to what's in the guide */
-	var yearPicker = jQuery("<div class='publicationDateHelper'><select class='catalogHelperTool publishedYear bookEditInput' style='width: fit-content;'></select></div>").insertAfter("#form_date").find(".publishedYear");
+	var yearPicker = jQuery("<div class='publicationDateHelper'><select class='catalogHelperTool publishedYear bookEditInput' style='width: auto;'></select></div>").insertAfter("#form_date").find(".publishedYear");
 	yearPicker.append("<option></option");
 	for (var earliestYear = 1950, year = new Date().getFullYear(); year >= earliestYear; --year) {
 		yearPicker.append("<option>" + year + "</option>");
 	}
-	yearPicker.after("<select class='catalogHelperTool publishedMonth bookEditInput readonly' disabled style='width: fit-content;'><option></option><optgroup label='Month'><option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option></optgroup><optgroup label='Season'><option>Spring</option><option>Summer</option><option>Fall</option><option>Winter</option></optgroup></select>");
+	yearPicker.after("<select class='catalogHelperTool publishedMonth bookEditInput readonly' disabled style='width: auto;'><option></option><optgroup label='Month'><option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option></optgroup><optgroup label='Season'><option>Spring</option><option>Summer</option><option>Fall</option><option>Winter</option></optgroup></select>");
 
 	/* disable the month unless there's an actual year */
 	jQuery(document)
