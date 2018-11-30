@@ -574,9 +574,7 @@
 		}
 
 		/* Graphical reset for the entry forms, with IE support. */
-		jQuery('#book_editTabTextSave1, #book_editTabTextSave2, #book_editTabTextEditCancel1, #book_editTabTextEditCancel2')
-		  .css('display', 'table-cell')
-		  .css('display', 'unset');
+		jQuery('#book_editTabTextSave1, #book_editTabTextSave2, #book_editTabTextEditCancel1, #book_editTabTextEditCancel2').css('display', 'table-cell');
 		jQuery('#book_bookInformationTable')
 		  .css('opacity', 'inherit')
 		  .css('opacity', 'unset')
