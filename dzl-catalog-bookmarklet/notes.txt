@@ -1,0 +1,126 @@
+### General elements ###
+jQuery("#ratingstdtitle").closest("tr")	//rating
+jQuery("#form_review").closest("tr")		//review
+jQuery("#bookedit_publication").closest("tr") //publication
+jQuery("#bookedit_ISBN").closest("tr")	//isbn
+jQuery("#bookedit_weights").closest("tr")	//weight
+jQuery("#ajaxinc_books_readdates").closest("tr") //reading dates
+jQuery("#bookedit_lccallnumber").closest("tr)"//lc classification
+jQuery("#bookedit_dewey").closest("tr")	//dewey
+jQuery("#bookedit_privatecomment").closest("tr") //private comments
+jQuery("tr.section:contains('Identifiers')")	//identifiers section
+jQuery("tr.section:contains('Identifiers') ~ tr") //all trailing items
+
+### Translating from "ajax_bookInformationBlock.php?book_startInEditMode=1&book=160705911&work=22336878" to "addnew.php"
+## selector for all form elements is jQuery(".bookEditInput:not(.catalogHelperTool)")
+## Vanilla copy: no hiding/otherwise helper stuff on page
+/ajax_bookInformationBlock.php?book_startInEditMode=1&book=160705911&work=22336878
+/addnew.php
+
+### CSS for <span> for autotagged item (use bookEditInput class for text matching etc.): ###
+	width: fit-content;
+	display: inline-block;
+	vertical-align: inherit;
+	padding: 2px 4px;
+	border-right-width: 0;
+	color: gray;
+### CSS for following textarea: ###
+	bump width down from 95% (80-85% maybe?)
+
+### HTML for upload progress ###
+<div id="uploadProgress" style="display:none; text-align: center;"><h2></h2><img src="https://pics.cdn.librarything.com/pics/fbloader.gif"><p></p></div>
+
+### HTML for picture upload ###
+<div>
+<form enctype="multipart/form-data" action="/upload_arbitrarypic.php" method="post" id="pictureUpload">
+	<input type="hidden" name="MAX_FILE_SIZE" value="8388608">
+	<input type="hidden" name="whichgallery" value="2">
+</form>
+</div>
+
+### separate user input for picture upload ###
+<tr><td class="left">Cover image</td><td><input name="userfile" type="file" accept="image/*" form="pictureUpload"></td></tr>
+
+### HTML for size picking helper ###
+<div id="quicksizeselect">
+	<span style="display: inline-block;">
+	<button type="button" style="margin-top: 5px; vertical-align: bottom; width: 136px; height: 176px; cursor: pointer;">11 x 8.5</button>
+	<button type="button" style="margin-top: 5px; vertical-align: bottom; width: 88px; height: 136px; cursor: pointer;">8.5 x 5.5</button>
+	<button type="button" style="margin-top: 5px; vertical-align: bottom; width: 68px; height: 88px; cursor: pointer;">5.5 x 4.25</button>
+	<button type="button" style="margin-top: 5px; vertical-align: bottom; width: 44px; height: 68px; cursor: pointer;">4.25 x 2.75</button>
+	</span>
+	<span style="display: inline-block;">
+	<button type="button" style="margin-top: 5px; vertical-align: bottom; width: 176px; height: 136px; cursor: pointer;">8.5 x 11</button>
+	<button type="button" style="margin-top: 5px; vertical-align: bottom; width: 136px; height: 88px; cursor: pointer;">5.5 x 8.5</button>
+	<button type="button" style="margin-top: 5px; vertical-align: bottom; width: 88px; height: 68px; cursor: pointer;">4.25 x 5.5</button>
+	<button type="button" style="margin-top: 5px; vertical-align: bottom; width: 68px; height: 44px; cursor: pointer;">2.75 x 4.25</button>
+	</span>
+</div>
+
+### JS for determining what pixel width is best for size picking helper ###
+var visualScale = 8;
+var commonZineSizes = [
+	'11" x 8.5"', '8.5" x 5.5"', '5.5" x 4.25"', '4.25" x 2.75"',
+	'8.5" x 11"', '5.5" x 8.5"', '4.25" x 5.5"', '2.75" x 4.25"'
+];
+function scaleDimension(dimension, scale) { return dimension.map(function(x){ return x*scale; }); }
+function sizeToDimension(s){ return s.split('x').map(function(x){ return parseFloat(x, 10); }); }
+var heightInput = jQuery("input[name='forcesave_height'").next("td").find("input");
+var widthInput = jQuery("input[name='forcesave_length'").next("td").find("input");
+
+### HTML for physical description field ###
+<tr id="physicalsummaryhelper">
+	<td class="left">Physical summary</td>
+	<td>
+	<fieldset style="width: 95%; padding: 0.5em 0 0.5em 1.5em; margin-bottom: 1em; border: 1px solid #D3D0C3; -webkit-border-radius: 5px; -moz-border-radius: 5px;">
+		<legend style="margin-left: -1.25em; padding: 0 0.25em; border: 1px solid white; -webkit-border-radius: 3px; background-color: white;"><input type="checkbox" id="catalogHelperPhysicalDescAutoToggle" value="" checked> Update automatically</legend>
+		<label><input type="radio" name="catalogHelperPhysicalDescColor" value="" checked="">Black and white</label>
+		<label><input type="radio" name="catalogHelperPhysicalDescColor" value="some color">Some color</label>
+		<label><input type="radio" name="catalogHelperPhysicalDescColor" value="full color">Full color</label>
+		<br>
+		<label><input type="checkbox" value="illustrations"> Illustrations</label><br>
+		<label><input type="checkbox" value="photographs"> Photographs</label><br>
+	</fieldset>
+	<textarea name="phys_summary" id="phys_summary" rows="2" class="bookEditInput catalogHelperTool readonly" readonly></textarea>
+	<div class="book_itemBottomControl bookEditHint" style="padding: 3px; width: 95%;">
+		<span style="float: left;">This field automatically updates but can also be manually edited.</span>
+		<a style="float: right;" href="javascript:expandMe("phys_summary")">more space</a>
+	</div>
+	</td>
+</tr>
+
+### HTML for quick duplication ###
+<div id="quickduplicatecontainer">
+	&#65279;
+	<div id="quickduplicatesearch">
+		<form action="" method="get">
+			<input type="text" placeholder="Find existing title to duplicate...">
+			<img src="https://pics.cdn.librarything.com/pics/sbar_3.png">
+			<button type="button" style="margin-left: 8px;">Clear search results</button>
+		</form>
+	</div>
+	<div id="quickduplicateresults" style="max-height: 380px; overflow-y: auto;"></div>
+</div>
+
+### CSS for quick duplication ###
+<style type="text/css" id="quickduplicatestyling">
+	#quickduplicatesearch input {
+		width: 25em;
+		padding: 0.25em 30px 0.25em 0.6em;
+		border: 1px solid #CCBFB0;
+		-webkit-border-radius: 8px;
+		color: #555;
+	}
+	#quickduplicatesearch img {
+		margin-left: -25px;
+		margin-bottom: -6px;
+		padding: 4px 8px 4px 0;
+		cursor: pointer;
+	}
+	#lt_catalog_list { width: 100%; }
+	#quickduplicateresults tr.odd td { background-color: inherit; }
+	#quickduplicateresults tr.odd { background-color: #F7F7F7; }
+	#quickduplicateresults tbody tr:hover { background-color: #ECE9DB; cursor: pointer; }
+	#quickduplicateresults td.cover, #quickduplicateresults td:last-of-type { padding-right: 1em; }
+	#quickduplicateresults .tablehead { font-weight: bold; }
+</style>
