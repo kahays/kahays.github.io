@@ -580,7 +580,7 @@
 			uploadLightbox.setDescription('Your <a href="" target="_blank">new book was created</a> but the cover couldn\'t be added. <a href="" target="_blank">Add a cover now</a> or <a href="#" class="alwaysblue">continue adding new books</a>.');
 			uploadLightbox.box
 			  .find("a")
-			  .eq(0).attr('href', bookLink).end()
+			  .eq(0).attr('href', bookLink.replace("book/", "details/")).end()
 			  .eq(1).attr('href', bookLink.replace("book/", "covers/")).end()
 			  .eq(2).click(function(){
 				  resetForms();
