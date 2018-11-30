@@ -377,6 +377,7 @@
 	});
 
 	/* Add physical summary fields. */
+	/* BUG: Microsoft Edge disables the controls inside the <legend> element of a disabled <fieldset> (but not with nested <fieldset>s.) Nest things until it's fixed. */
 	jQuery("#bookedit_phys_dims")
 	  .closest("tr")
 	  .after('\
@@ -384,7 +385,7 @@
 		<td class="left">Physical summary</td>\
 		<td>\
 		<fieldset style="width: 95%; padding: 0.5em 0 0.5em 1.5em; margin-bottom: 1em; border: 1px solid #D3D0C3; -webkit-border-radius: 5px; -moz-border-radius: 5px;">\
-			<legend style="margin-left: -1.25em; padding: 0 0.25em; border: 1px solid white; -webkit-border-radius: 3px; background-color: white;"><input type="checkbox" id="catalogHelperPhysicalDescAutoToggle" value="" checked> Generate automatically</legend>\
+			<legend style="margin-left: -1.25em; padding: 0 0.25em; border: 1px solid white; -webkit-border-radius: 3px; background-color: white;"><fieldset><input type="checkbox" id="catalogHelperPhysicalDescAutoToggle" value="" checked> Generate automatically</fieldset></legend>\
 			<label><input type="radio" name="catalogHelperPhysicalDescColor" value="" checked="">Black and white</label>\
 			<label><input type="radio" name="catalogHelperPhysicalDescColor" value="some color">Some color</label>\
 			<label><input type="radio" name="catalogHelperPhysicalDescColor" value="full color">Full color</label>\
@@ -423,6 +424,7 @@
 		} else {
 			jQuery("#physicalsummaryhelper")
 			  .find("fieldset")
+			    .first() /* See BUG above. */
 			    .attr("disabled", true)
 			    .addClass("readonly")
 			    .end()
