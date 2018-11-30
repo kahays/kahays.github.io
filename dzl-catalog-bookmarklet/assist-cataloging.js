@@ -510,16 +510,19 @@
 				uploadLightbox.setTitle("Fetching book information...");
 				uploadLightbox.isLoading();
 				
-				jQuery.get("/response_list.php", {})
-				  .fail(function(){
+				jQuery.ajax({
+					url: "/response_list.php",
+					type: "GET",
+					cache: false
+				}).fail(function(){
 				  	uploadLightbox.error(
 				  		"couldn't fetch new book information",
 				  		'Information couldn\'t be found, but your book <a href="/catalog.php" target="_blank"><em>may</em> have been added already</a>. If not, you can <a href="#" class="alwaysblue">return to editing</a>.'
 				  	);
 				  	/* BUG: clicking on the link to the catalog also closes the lightbox. Not sure why, the below selector is not causing it. */
 				  	uploadLightbox.box.find("a.alwaysblue").click(uploadLightbox.dismiss);
-				  })
-				  .done(function(data){
+				})
+				.done(function(data){
 					var recentlyAddedBooks = jQuery(data);
 					var newBookEntry = recentlyAddedBooks
 					  .find("td.book a")
@@ -558,7 +561,7 @@
 						/* show completion even without image upload. */
 						uploadComplete(newBookLink);
 					}
-				  });
+				});
 			  });
 		}
 
