@@ -102,7 +102,7 @@
 	/* hiding the fields we don't use */
 	jQuery("#ratingstdtitle, #form_review, #bookedit_publication, #bookedit_ISBN, #bookedit_weights, tr:contains('Convert all physical measurements to'), #ajaxinc_books_readdates, #bookedit_lccallnumber, #bookedit_dewey, #bookedit_privatecomment").closest("tr").hide();
 	jQuery("#form_date").hide();
-	jQuery("input[name='thickness'], td.bookEditHint:contains('thickness')").hide();
+	jQuery("input[name=thickness], td.bookEditHint:contains('thickness')").hide();
 	jQuery("#ajaxinc_books_readdates").closest("tr").nextUntil(":contains('From where?')").hide();
 	jQuery("#bookedit_privatecomment").closest("tr").nextUntil(":contains('Summary')").hide();
 	jQuery("tr.section:contains('Identifiers'), tr.section:contains('Identifiers') ~ tr").hide();
@@ -363,8 +363,8 @@
 			</span>\
 		</div>');
 	function sizeToDimension(s){ return s.split('x').map(function(x){ return parseFloat(x, 10); }); }
-	var heightInput = jQuery("input[name='forcesave_height'").next("td").find("input");
-	var widthInput = jQuery("input[name='forcesave_length'").next("td").find("input");
+	var heightInput = jQuery("input[name='forcesave_height']").next("td").find("input");
+	var widthInput = jQuery("input[name='forcesave_length']").next("td").find("input");
 
 	jQuery("#quicksizeselect button").each(function(i){
 		this.onclick = function() {
