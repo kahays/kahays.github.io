@@ -377,7 +377,7 @@
 	});
 
 	/* Add physical summary fields. */
-	/* BUG: Microsoft Edge disables the controls inside the <legend> element of a disabled <fieldset> (but not with nested <fieldset>s.) Nest things until it's fixed. */
+	/* WORKAROUND: Microsoft Edge disables the controls inside the <legend> element of a disabled <fieldset> (but not with nested <fieldset>s.) Nest things until it's fixed. */
 	jQuery("#bookedit_phys_dims")
 	  .closest("tr")
 	  .after('\
@@ -424,7 +424,7 @@
 		} else {
 			jQuery("#physicalsummaryhelper")
 			  .find("fieldset")
-			    .first() /* See BUG above. */
+			    .first() /* See WORKAROUND above. */
 			    .attr("disabled", true)
 			    .addClass("readonly")
 			    .end()
@@ -540,9 +540,17 @@
 						jQuery("#pictureUpload input[name=item]").val( newBookID );
 						uploadLightbox.setTitle("Uploading cover image...");
 						uploadLightbox.isLoading();
+
+						/* IE doesn't support form="id" on input elements, so we need to add manually. */
+						var coverImageFormData = new FormData();
+						jQuery("#pictureUpload input").each(function(){
+							coverImageFormData.append(this.name, this.value);
+						});
+						coverImageFormData.append("userfile", jQuery("[name=userfile]").get(0).files[0]);
+
 						jQuery.ajax({
 							url: jQuery("#pictureUpload").prop("action"),
-							data: new FormData(jQuery("#pictureUpload")[0]),
+							data: coverImageFormData,
 							contentType: false,
 							processData: false,
 							type: "POST"
