@@ -574,7 +574,7 @@
 
 		function coverDidNotUpload(bookLink){
 			uploadLightbox.error("couldn't upload cover image");
-			uploadLightbox.setDescription('The <a href="" target="_blank">new book</a> was created but the cover couldn\'t be added. You can <a href="" target="_blank">add a cover directly</a> or <a href="#" class="alwaysblue">continue adding new books</a>.');
+			uploadLightbox.setDescription('Your <a href="" target="_blank">new book was created</a> but the cover couldn\'t be added. <a href="" target="_blank">Add a cover now</a> or <a href="#" class="alwaysblue">continue adding new books</a>.');
 			uploadLightbox.box
 			  .find("a")
 			  .eq(0).attr('href', bookLink).end()
