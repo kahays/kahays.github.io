@@ -369,8 +369,8 @@
 	jQuery("#quicksizeselect button").each(function(i){
 		this.onclick = function() {
 			var d = sizeToDimension(jQuery(this).text());
-			heightInput.val(d[0]);
-			widthInput.val(d[1]);
+			heightInput.val(d[0]).change();
+			widthInput.val(d[1]).change();
 		};
 	});
 
