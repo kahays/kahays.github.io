@@ -527,38 +527,33 @@
 					  .first();
 					var newBookLink = newBookEntry.prop("href");
 					var newBookID = newBookLink.match(new RegExp(/book\/(\d+)/))[1];
-					jQuery("#pictureUpload input[name=item]").val( newBookID );
 
-					/* Uploading image. */
-					uploadLightbox.setTitle("Uploading cover image...");
-					uploadLightbox.isLoading();
-					jQuery.ajax({
-						url: jQuery("#pictureUpload").prop("action"),
-						data: new FormData(jQuery("#pictureUpload")[0]),
-						contentType: false,
-						processData: false,
-						type: "POST"
-					})
-					.fail(function(){ coverDidNotUpload(newBookLink); })
-					.done(function(data) {
-						var checkForSuccess = jQuery(data);
+					if (coverImageSelected) {
+						/* Uploading image. */
+						jQuery("#pictureUpload input[name=item]").val( newBookID );
+						uploadLightbox.setTitle("Uploading cover image...");
+						uploadLightbox.isLoading();
+						jQuery.ajax({
+							url: jQuery("#pictureUpload").prop("action"),
+							data: new FormData(jQuery("#pictureUpload")[0]),
+							contentType: false,
+							processData: false,
+							type: "POST"
+						})
+						.fail(function(){ coverDidNotUpload(newBookLink); })
+						.done(function(data) {
+							var checkForSuccess = jQuery(data);
 
-						if (checkForSuccess.find("h1:contains('Problem')").text() === "Problem") {
-							coverDidNotUpload(newBookLink);
-						} else {
-							uploadLightbox.setTitle("Complete!");
-							uploadLightbox.notLoading();
-							uploadLightbox.setDescription('<a href="" target="_blank">See your new book</a> or <a href="#" class="alwaysblue">return to adding books</a>.');
-							uploadLightbox.box
-							  .find("a")
-							  .first().attr('href', newBookLink.replace("book/", "details/")).end()
-							  .last().click(function(){
-								  resetForms();
-								  uploadLightbox.dismiss();
-								  return false;
-							  });
-						}
-					  });
+							if (checkForSuccess.find("h1:contains('Problem')").text() === "Problem") {
+								coverDidNotUpload(newBookLink);
+							} else {
+								uploadComplete(newBookLink);
+							}
+						  });
+					} else {
+						/* show completion even without image upload. */
+						uploadComplete(newBookLink);
+					}
 				  });
 			  });
 		}
@@ -578,6 +573,20 @@
 				  resetForms();
 				  uploadLightbox.dismiss();
 				  return false;
+			  });
+		}
+
+		function uploadComplete(bookLink) {
+			uploadLightbox.setTitle("Complete!");
+			uploadLightbox.notLoading();
+			uploadLightbox.setDescription('<a href="" target="_blank">See your new book</a> or <a href="#" class="alwaysblue">return to adding books</a>.');
+			uploadLightbox.box
+			  .find("a")
+			  .first().attr('href', bookLink.replace("book/", "details/")).end()
+			  .last().click(function(){
+				resetForms();
+				uploadLightbox.dismiss();
+				return false;
 			  });
 		}
 	}
