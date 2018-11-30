@@ -201,7 +201,7 @@
 
 	/* automatically match the summary and comments field */
 	jQuery("#form_summary").attr("readonly", "readonly").addClass("readonly");
-	jQuery("#form_comments").on("change keyup", function(){ jQuery("#form_summary").val( jQuery(this).val() ); });
+	jQuery("#form_comments").on("change input", function(){ jQuery("#form_summary").val( jQuery(this).val() ); });
 	jQuery(".bookEditHint:contains('summary')").text("Summary will automatically match the Comments field");
 
 	/* create our readonly field for autotagging */
