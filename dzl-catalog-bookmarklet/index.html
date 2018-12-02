@@ -15,9 +15,15 @@
 		<div id="instructions">
 		<h3>How to use the helper script for cataloging the DZL collection in <a href="https://www.librarything.com/">LibraryThing</a>!</h3>
 		<ol>
-			<li>Add this link as a bookmark:
+			<li>Add the bookmark in your browser.
 				<ul>
-					<li><a href="javascript:(function(){jQuery.getScript('https://lewis-k.github.io/dzl-catalog-bookmarklet/assist-cataloging-min.js');})();">DZL cataloging helper</a></li>
+					<li class="restore-top-padding">
+						For desktop devices: <a href="javascript:(function(){jQuery.getScript('https://lewis-k.github.io/dzl-catalog-bookmarklet/assist-cataloging-min.js');})();">DZL cataloging helper</a></li>
+					</li>
+					<li>
+						For mobile devices, copy/paste the text below:<br>
+						<textarea readonly="readonly" onclick="this.setSelectionRange(0, 999);">javascript:(function(){jQuery.getScript('https://lewis-k.github.io/dzl-catalog-bookmarklet/assist-cataloging-min.js');})();</textarea>
+					</li>
 				</ul>
 			</li>
 			<li>Log into <a href="https://www.librarything.com/">LibraryThing</a>.</li>
