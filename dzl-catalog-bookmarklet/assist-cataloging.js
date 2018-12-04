@@ -629,31 +629,45 @@
 		}	
 
 		output("Searching...");
-		jQuery.get("/catalog_bottom.php", { 'deepsearch': term, 'view': 'DenverZine' })
-			.done(function(data) {
-				var results = jQuery(data).find("#lt_catalog_list");
-				if (results.length) {
-					/* preserve the links to books in a data attribute */
-					results.find(".tools a[href*='/details/']").each(function(){
-						jQuery(this).closest("tr").attr('data-book-detail-URI', jQuery(this).attr('href'));
-					});
+		/*
+		 * Set our default sort preferences (these will be global because there's not
+		 * another way.) Sorting by title first and entry date second. The sortURL
+		 * doesn't mean anything, it's just the return page for the POST, so we pick
+		 * something that doesn't return a bunch of stuff.
+		*/
+		jQuery.post("/ajax_setsort_submit.php", {
+			sortmenu: "title",
+			sortmenu_desc: 0,
+			sortmenu_second: "stamp",
+			sortmenu_desc_second: 0,
+			sortURL: "/ajax_setsort.php"
+		  }).always(function() {;
+			jQuery.get("/catalog_bottom.php", { 'deepsearch': term, 'view': 'DenverZine' })
+			  .done(function(data) {
+					var results = jQuery(data).find("#lt_catalog_list");
+					if (results.length) {
+						/* preserve the links to books in a data attribute */
+						results.find(".tools a[href*='/details/']").each(function(){
+							jQuery(this).closest("tr").attr('data-book-detail-URI', jQuery(this).attr('href'));
+						});
 
-					/* don't need ratings, the toolbox, or extra cover controls */
-					results.find(".coverControl, #head_rating, .stars, #head_toolpad, .toolpad").detach();
-					/* now strip remaining links */
-					results.find("a:not(.lt-title)").contents().unwrap();
-					/* do our best to remove script handlers */
-					results.find("[onclick], [ondblclick], [dblclick]").removeAttr('onclick ondblclick dblclick');
+						/* don't need ratings, the toolbox, or extra cover controls */
+						results.find(".coverControl, #head_rating, .stars, #head_toolpad, .toolpad").detach();
+						/* now strip remaining links */
+						results.find("a:not(.lt-title)").contents().unwrap();
+						/* do our best to remove script handlers */
+						results.find("[onclick], [ondblclick], [dblclick]").removeAttr('onclick ondblclick dblclick');
 
-					results.find("a.lt-title").attr("target", "_blank").click(function(e){ e.stopPropagation(); });
-					results.find("tbody tr").click(confirmCopyData);
-					output(results);
-				} else {
-					output("No books found.");
-				}
-			})
-		.fail(function(){
-			output("Search results could not be loaded.");
+						results.find("a.lt-title").attr("target", "_blank").click(function(e){ e.stopPropagation(); });
+						results.find("tbody tr").click(confirmCopyData);
+						output(results);
+					} else {
+						output("No books found.");
+					}
+				})
+			  .fail(function(){
+				output("Search results could not be loaded.");
+			  });
 		});
 
 		/* verrry rough click-to-copy */
