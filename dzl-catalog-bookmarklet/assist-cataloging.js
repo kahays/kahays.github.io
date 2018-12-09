@@ -427,7 +427,8 @@
 			    .first() /* See WORKAROUND above. */
 			    .attr("disabled", true)
 			    .addClass("readonly")
-			    .end()
+			    .end() /* end the .first() */
+			    .end() /* end the .find() */
 			  .find("legend")
 			    .css("borderColor", "#CCC")
 			    .end()
