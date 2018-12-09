@@ -352,6 +352,7 @@
 	jQuery("tr:contains('Dimensions') fieldset").after(
 		'<div id="quicksizeselect">\
 			<span style="display: inline-block;">\
+			<button type="button" style="margin-top: 5px; -webkit-appearance: none; background: linear-gradient(to bottom, #FFF, #DDD); border: 1px solid #555; vertical-align: bottom; width: 136px; height: 176px; cursor: pointer;">11 x 8.5</button>\
 			<button type="button" style="margin-top: 5px; -webkit-appearance: none; background: linear-gradient(to bottom, #FFF, #DDD); border: 1px solid #555; vertical-align: bottom; width: 88px; height: 136px; cursor: pointer;">8.5 x 5.5</button>\
 			<button type="button" style="margin-top: 5px; -webkit-appearance: none; background: linear-gradient(to bottom, #FFF, #DDD); border: 1px solid #555; vertical-align: bottom; width: 68px; height: 88px; cursor: pointer;">5.5 x 4.25</button>\
 			<button type="button" style="margin-top: 5px; -webkit-appearance: none; background: linear-gradient(to bottom, #FFF, #DDD); border: 1px solid #555; vertical-align: bottom; width: 44px; height: 68px; cursor: pointer;">4.25 x 2.75</button>\
