@@ -259,7 +259,7 @@
 	{
 		/* Load the custom MST3K stylesheet. We're temporarily skipping an include guard. */
 		var style = document.createElement("link");
-		style.href = "https://lewis-k.github.io/mst3k/style.css";
+		style.href = "https://kahays.github.io/mst3k/style.css";
 		style.rel = "stylesheet";
 		style.type = "text/css";
 		document.head.appendChild(style);
@@ -299,7 +299,7 @@
 		}
 
 		/* Load other scripts. */
-		baseUrl = (developmentEnvironment ? "http://localhost/~kate/" : "https://lewis-k.github.io/");
+		baseUrl = (developmentEnvironment ? "http://localhost/~kate/" : "https://kahays.github.io/");
 		$.getScript(baseUrl + "mst3k/add-chat.js");
 		$.getScript(baseUrl + "mst3k/theater-mode.js");
 		if (!disableAutoplay)
