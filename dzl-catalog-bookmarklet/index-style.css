@@ -1,34 +1,41 @@
 /* for the magic constants: the image we're using is 720px wide and 450px tall. */
 body {
-	width: 722px;
+	max-width: 722px;
 	margin: 0 auto;
 	font-family: sans-serif;
 	background-color: #eee;
 }
 
+#background-container {
+    /*
+    Image is from the DZL Instagram feed (https://www.instagram.com/denverzinelibrary/),
+    with no current attribution. If you claim the copyright for this, please raise an
+    issue on the associated Github page. Thanks!
+    */
+    background: url("dzl-instagram.jpg");
+    box-sizing: border-box;
+    min-height: 450px;
+    padding-top: 50px;
+}
+
 #container {
-	position: relative;
-	border: 1px solid #BBB;
+	border: 1px solid #bbb;
 	border-top-width: 0;
 	background-color: white;
 }
 
-#container > section {
-	width: calc(720px - 1.5em);
-	padding: 0 0.75em;
+#container section {
+    padding: 0.1px 0.75em;
 }
 
 #instructions {
-	position: absolute;
-	top: 50px;
-	left: 0.5em;
-	width: calc(720px - 1.5em - 1em) !important;
+    margin: auto 0.5em;
 	border-radius: 0.3em;
-	background-color: inherit;
+	background-color: white;
 }
 
 textarea {
-	width: calc(100% - 3em);
+    width: 95%;
 }
 
 li{ padding-top: 0.5em; }
