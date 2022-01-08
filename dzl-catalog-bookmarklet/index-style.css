@@ -13,7 +13,7 @@ body {
 	background-color: white;
 }
 
-#container > div {
+#container > section {
 	width: calc(720px - 1.5em);
 	padding: 0 0.75em;
 }
