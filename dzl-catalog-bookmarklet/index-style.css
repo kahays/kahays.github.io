@@ -16,6 +16,7 @@ body {
     box-sizing: border-box;
     min-height: 450px;
     padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 #container {
